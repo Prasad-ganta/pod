@@ -1,0 +1,220 @@
+.image-uploader {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.upload-area {
+  border: 2px dashed var(--input-border);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--input-background);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(5, 217, 232, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.upload-area:hover::before {
+  opacity: 1;
+}
+
+.upload-area:hover {
+  border-color: var(--secondary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.upload-area.dragging {
+  border-color: var(--secondary-color);
+  background-color: rgba(5, 217, 232, 0.1);
+  transform: scale(1.02);
+  box-shadow: 0 0 20px var(--secondary-color);
+}
+
+.upload-icon {
+  margin-bottom: 15px;
+  color: var(--secondary-color);
+  animation: float 4s ease-in-out infinite;
+}
+
+.upload-icon svg {
+  filter: drop-shadow(0 0 8px var(--secondary-color));
+}
+
+.upload-area p {
+  margin: 10px 0 0;
+  color: var(--text-color);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.upload-area:hover p {
+  opacity: 1;
+  color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.file-input {
+  display: none;
+}
+
+.selected-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 150px;
+  transition: all 0.3s ease;
+}
+
+.selected-image-container:hover {
+  transform: scale(1.05);
+}
+
+.selected-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border: 2px solid var(--secondary-color);
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.remove-image-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.preview-thumbnail {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border-left: 3px solid var(--secondary-color);
+  animation: slideIn 0.5s ease-out;
+}
+
+.preview-thumbnail p {
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid var(--secondary-color);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.thumbnail:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px var(--secondary-color);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .upload-area {
+    padding: 20px;
+    min-height: 180px;
+  }
+
+  .upload-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-area {
+    min-height: 150px;
+    padding: 15px;
+  }
+
+  .upload-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .selected-image-container {
+    max-width: 120px;
+  }
+
+  .preview-thumbnail {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+  }
+}
